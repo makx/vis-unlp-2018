@@ -22,23 +22,26 @@ export default class MapSpain extends Component {
     } = this.props
     const position = [this.state.lat, this.state.lng]
     return (
-      <Map className='map-spain' center={position} zoom={this.state.zoom}>
-        <TileLayer
-          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-          <MarkerClusterGroup>
-            {
-              data.length && data.map((item, key) => (
-                <Marker key={key} position={{lat: item.latitude, lng: item.longitude}}>
-                  <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                  </Popup>
-                </Marker>
-              ))
-            }
-          </MarkerClusterGroup>
-      </Map>
+      <div class='container'>
+        <h2>Ventas en España y Portugal</h2>
+        <Map className='map-spain' center={position} zoom={this.state.zoom}>
+          <TileLayer
+            attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+            <MarkerClusterGroup>
+              {
+                data.length && data.map((item, key) => (
+                  <Marker key={key} position={{lat: item.latitude, lng: item.longitude}}>
+                    <Popup>
+                      A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup>
+                  </Marker>
+                ))
+              }
+            </MarkerClusterGroup>
+        </Map>
+      </div>
     )
   }
 }

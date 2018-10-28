@@ -3,18 +3,8 @@ import * as d3 from 'd3'
 
 export default class BarChart extends React.Component {
 
-
-  componentDidMount () {
-    console.log('se ejecuta el didmount')
-
-  }
-
   componentWillUnmount () {
-    console.log('SE EJECUTA UNMONT')
-    d3.selectAll(".bar-chart").remove();
-  }
-
-  componentWillReceiveProps (nextProps) {
+    d3.select(".bar-chart > *").remove()
   }
 
   render () {
@@ -24,7 +14,7 @@ export default class BarChart extends React.Component {
     } = this.props
     
     d3.select(".bar-chart > *").remove()
-    const data = purchasesByProduct.slice(0, 9).map(item => {
+    const data = purchasesByManufacturer.slice(0, 9).map(item => {
       return {
         label: item.key,
         value: Math.round(item.value.income*10)/10
@@ -32,13 +22,16 @@ export default class BarChart extends React.Component {
     })
     this.drawChart(data)
     return (
-      <div className='bar-chart'>
-      </div>
+        <div className='container'>
+          <h2>Ventas por Fabricante</h2>
+          <div className='bar-chart'>
+          </div>
+        </div>
+
     )
   }
 
   drawChart(data) {
-    console.log('va data ',data)
     const width = 700;
     const height = 450;
 
@@ -124,7 +117,7 @@ export default class BarChart extends React.Component {
         .attr('fill', '#000')
         .style('font-size', '20px')
         .style('text-anchor', 'middle')
-        .text('Manufacturers');    
+        .text('Fabricantes');    
         
     chart.select('.y.axis')
         .append('text')
@@ -134,7 +127,7 @@ export default class BarChart extends React.Component {
         .attr('fill', '#000')
         .style('font-size', '20px')
         .style('text-anchor', 'middle')
-        .text('Purchases Sum');   
+        .text('Ventas');   
         
     const yGridlines = d3.axisLeft()
         .scale(yScale)

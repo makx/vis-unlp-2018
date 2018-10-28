@@ -50,7 +50,7 @@ export default class Controls extends React.Component {
             isClearable={true}
             />
         </div>
-        {this.state.showProductSelect?
+        {/* {this.state.showProductSelect?
         <div className='select-product'>
           <label>Producto: </label>
           <Select
@@ -59,8 +59,7 @@ export default class Controls extends React.Component {
             options={this.getOptions(products)}
             isClearable={true}
             />
-        </div> : null
-        }
+        </div> : null }*/}
       </React.Fragment>
     )
   }
