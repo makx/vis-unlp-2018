@@ -2,6 +2,7 @@ import React from 'react'
 import data from './sample.js'
 
 import * as d3 from 'd3'
+import { Col } from 'react-bootstrap';
 
 
 export default class HorizBarChart extends React.Component {
@@ -34,12 +35,12 @@ export default class HorizBarChart extends React.Component {
       .attr("transform", `translate(0,${margin.top})`)
       .call(d3.axisTop(x).ticks(width / 80))
       // .call(g => g.select(".domain").remove())
-    
+
     let yAxis = g => g
       .classed('y axis', true)
       .attr("transform", `translate(${margin.left},0)`)
       .call(d3.axisLeft(y).tickSizeOuter(0))
-    
+
     let format = d3.format(".3f")
     console.log('la data importada', data)
     svg.append("g")
@@ -51,7 +52,7 @@ export default class HorizBarChart extends React.Component {
         .attr("y", d => y(d.key))
         .attr("width", d => x(parseFloat(d.value.income)) - x(0))
         .attr("height", y.bandwidth());
-    
+
     svg.append("g")
         .attr("fill", "white")
         .attr("text-anchor", "end")
@@ -63,7 +64,7 @@ export default class HorizBarChart extends React.Component {
         .attr("y", d => y(d.key) + y.bandwidth() / 2)
         .attr("dy", "0.35em")
         .text(d => format(parseFloat(d.value.income)));
-    
+
     svg.append("g")
         .call(xAxis);
 
@@ -77,8 +78,8 @@ export default class HorizBarChart extends React.Component {
       .attr('fill', '#000')
       .style('font-size', '20px')
       .style('text-anchor', 'middle')
-      .text('Ventas (€)');    
-      
+      .text('Ventas (€)');
+
     svg.select('.y.axis')
       .append('text')
       .attr('x', 0)
@@ -92,10 +93,10 @@ export default class HorizBarChart extends React.Component {
 
   render () {
 
-    return <div className='container'>
+    return <Col xs={12} sm={12} md={8}>
       <h2>Ventas por productos</h2>
       <div className='horizontal-bar-chart'></div>
-    </div>
+    </Col>
   }
 
 }

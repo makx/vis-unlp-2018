@@ -41,13 +41,13 @@ export default class Controls extends React.Component {
     const manufacturerOptions = this.getOptions(manufacturers)
     return (
       <React.Fragment>
-        <div className='select-manufacturers'>
-          <label>Fabricante: </label>
+        <div className='select-manufacturers pull-right'>
           <Select
             value={manufacturerOptions.find(item => item.value == currentManufacturer)}
             onChange={this.handleChange.bind(this)}
             options={this.getOptions(manufacturers)}
             isClearable={true}
+            placeholder="Fabricante..."
             />
         </div>
         {/* {this.state.showProductSelect?

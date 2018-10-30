@@ -1,5 +1,6 @@
 import React from 'react'
 import * as d3 from 'd3'
+import { Col } from 'react-bootstrap';
 
 export default class BarChart extends React.Component {
 
@@ -12,7 +13,7 @@ export default class BarChart extends React.Component {
       purchasesByManufacturer,
       purchasesByProduct
     } = this.props
-    
+
     d3.select(".bar-chart > *").remove()
     const data = purchasesByManufacturer.slice(0, 9).map(item => {
       return {
@@ -22,11 +23,11 @@ export default class BarChart extends React.Component {
     })
     this.drawChart(data)
     return (
-        <div className='container'>
+        <Col xs={12} sm={12} md={8}>
           <h2>Ventas por Fabricante</h2>
           <div className='bar-chart'>
           </div>
-        </div>
+        </Col>
 
     )
   }
@@ -95,7 +96,7 @@ export default class BarChart extends React.Component {
 
     const xAxis = d3.axisBottom()
         .scale(xScale);
-        
+
     chart.append('g')
         .classed('x axis', true)
         .attr('transform', `translate(0,${height})`)
@@ -117,8 +118,8 @@ export default class BarChart extends React.Component {
         .attr('fill', '#000')
         .style('font-size', '20px')
         .style('text-anchor', 'middle')
-        .text('Fabricantes');    
-        
+        .text('Fabricantes');
+
     chart.select('.y.axis')
         .append('text')
         .attr('x', 0)
@@ -127,8 +128,8 @@ export default class BarChart extends React.Component {
         .attr('fill', '#000')
         .style('font-size', '20px')
         .style('text-anchor', 'middle')
-        .text('Ventas');   
-        
+        .text('Ventas');
+
     const yGridlines = d3.axisLeft()
         .scale(yScale)
         .ticks(5)

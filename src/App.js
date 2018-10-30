@@ -5,6 +5,9 @@ import MapSpain from './Map/Map.js'
 import BarChart from './Barchart/Barchart.js'
 import Controls from './Controls/Controls.js'
 import HorizBarChart from './HorizBarChart/HorizBarChart.js'
+import { Button,Nav,NavItem,NavDropdown,MenuItem,Grid,Row } from 'react-bootstrap';
+
+import { FaChartBar } from 'react-icons/fa'
 class App extends Component {
   constructor (props) {
     super(props)
@@ -59,7 +62,7 @@ class App extends Component {
     this.setState({
       data: data,
       currentManufacturer: id_manufacturer,
-      purchasesByManufacturer,      
+      purchasesByManufacturer,
       purchasesByProduct
     })
   }
@@ -76,7 +79,7 @@ class App extends Component {
     this.setState({
       data: data,
       currentProduct: product_id,
-      purchasesByManufacturer,      
+      purchasesByManufacturer,
       purchasesByProduct
     })
   }
@@ -127,14 +130,14 @@ class App extends Component {
     //   purchasesByManufacturer,
     //   purchasesByProduct
     // })
-  }  
+  }
   clearOptionProduct () {//DEPRECATED
     // let data = JSON.parse(JSON.stringify(this.state.rawData))
     const data = this.filterData(this.state.currentManufacturer, null)
     let purchasesByManufacturer = this.getPurchasesByManufacturer(data).sort((a, b) => {
       return b.value.income - a.value.income
     })
-    
+
     let purchasesByProduct = this.getPurchasesByProduct(data).sort((a, b) => {
       return b.value.income - a.value.income
     })
@@ -165,7 +168,7 @@ class App extends Component {
       .key(function(d) { return d.city})
       .rollup(function(rows) { return {"length": d3.sum(rows, function(d) {return parseFloat(d.product_quantity)}, )}})
   }
-  
+
   render() {
     const {
       data,
@@ -182,7 +185,7 @@ class App extends Component {
     return <div className="App">
       <div className="App-instructions">
         <div className='header'>
-          <h3>Dashboard de Ventas</h3>
+          <h3 className="pull-left"><FaChartBar /> Dashboard de Ventas</h3>
           <Controls
             manufacturers={manufacturers}
             currentManufacturer={currentManufacturer}
@@ -194,15 +197,21 @@ class App extends Component {
             clearManufacturer={this.clearOptionManufacturer.bind(this)}
             />
         </div>
+      </div>
+      <div className="App-content">
         {!updating &&
-        <div className='container'> 
+        <Grid className="container-fluid">
+        <Row className="show-grid">
         {data.length &&  <MapSpain data={data} />}
         {!currentManufacturer ?
-          <BarChart currentManufacturer={currentManufacturer} purchasesByManufacturer={purchasesByManufacturer} purchasesByProduct={purchasesByProduct}  />
-          : <HorizBarChart purchasesByProduct={purchasesByProduct} />
+          <BarChart className='col-6'
+          currentManufacturer={currentManufacturer}
+          purchasesByManufacturer={purchasesByManufacturer}
+          purchasesByProduct={purchasesByProduct}  />
+          : <HorizBarChart className='col-6' purchasesByProduct={purchasesByProduct} />
         }
-        
-        </div>}
+        </Row>
+        </Grid>}
       </div>
     </div>
   }
