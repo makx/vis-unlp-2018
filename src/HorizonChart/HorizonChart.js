@@ -71,7 +71,7 @@ export default class HorizonChart extends React.Component {
 
         console.log('ladata', data);
 
-        const scheme = "schemePuRd";
+        const scheme = "schemeRdPu";
         const overlap = 7;
         const step = 23;
         const color = i => d3[scheme][Math.max(3, overlap)][i + Math.max(0, 3 - overlap)]
