@@ -18,7 +18,7 @@ export default class HorizonChart extends React.Component {
             './time.csv',
             function (data) {},
             function (row) {
-                purchases.push({name: row.name, date: row.date * 1000, value: +row.total_1 + +row.total_2 })
+                purchases.push({name: row.name, date: row.date * 1000, value: +row.total })
             }
         ).then((rows) => {
             //var format = d3.timeFormat("%Y-%m-%dT%H:%M");
