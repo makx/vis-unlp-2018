@@ -222,7 +222,7 @@ class App extends Component {
         }
         </Row>
         <Row className="show-grid">
-            {/* <HorizonChart />*/}
+            <HorizonChart />
         </Row>
         </Grid>}
       </div>
