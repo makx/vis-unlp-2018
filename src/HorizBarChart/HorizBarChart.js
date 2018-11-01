@@ -12,7 +12,7 @@ export default class HorizBarChart extends React.Component {
   }
 
   drawChart () {
-    let data = this.props.purchasesByProduct.slice(0,19)
+    let data = this.props.purchasesByProduct.slice(0,14)
     let margin = ({top: 30, right: 0, bottom: 10, left: 30})
     let height = data.length * 25 + margin.top + margin.bottom
     let width = 600
@@ -32,8 +32,8 @@ export default class HorizBarChart extends React.Component {
 
     let xAxis = g => g
       .classed('x axis', true)
-      .attr("transform", `translate(0,${margin.top})`)
-      .call(d3.axisTop(x).ticks(width / 80))
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x).ticks(width / 80))
       // .call(g => g.select(".domain").remove())
 
     let yAxis = g => g
@@ -63,6 +63,8 @@ export default class HorizBarChart extends React.Component {
         .attr("x", d => x(parseFloat(d.value.income)) - 4)
         .attr("y", d => y(d.key) + y.bandwidth() / 2)
         .attr("dy", "0.35em")
+        .attr("dx", "4em")
+        .attr('fill', '#000')
         .text(d => format(parseFloat(d.value.income)));
 
     svg.append("g")
@@ -74,9 +76,9 @@ export default class HorizBarChart extends React.Component {
     svg.select('.x.axis')
       .append('text')
       .attr('x',  width/2)
-      .attr('y', -30)
+      .attr('y', 40)
       .attr('fill', '#000')
-      .style('font-size', '20px')
+      .style('font-size', '18px')
       .style('text-anchor', 'middle')
       .text('Ventas (€)');
 
@@ -86,17 +88,19 @@ export default class HorizBarChart extends React.Component {
       .attr('y', 0)
       .attr('transform', `translate(-50, ${height/2}) rotate(-90)`)
       .attr('fill', '#000')
-      .style('font-size', '20px')
+      .style('font-size', '18px')
       .style('text-anchor', 'middle')
-      .text('Product ID');
+      .text('Producto ID')
+
   }
 
   render () {
-
-    return <Col xs={12} sm={12} md={8}>
-      <h2>Ventas por productos</h2>
-      <div className='horizontal-bar-chart'></div>
-    </Col>
+    return(
+        <Col xs={12} sm={12} md={8}>
+          <h2>Ventas por productos</h2>
+          <div className='horizontal-bar-chart'></div>
+        </Col>
+    )
   }
 
 }

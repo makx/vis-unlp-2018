@@ -95,7 +95,7 @@ shape-rendering: crispEdges;
 .bar-label{
   fill: #000;
   text-anchor: middle;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .axis path,
@@ -120,7 +120,9 @@ rect {
 }
 
 .horizontal-bar-chart {
-  margin-top: 40px;
+  min-height: 450px;
+  border: solid 1px #ead7e6;
+  background: #f4f1ec;
 }
 
 .horizontal-bar-chart > svg {

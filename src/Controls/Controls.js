@@ -23,9 +23,9 @@ export default class Controls extends React.Component {
     return manufacturers.map(item => {
       return {
         value: parseInt(item),
-        label: parseInt(item)
+        label: "Fabricante " + parseInt(item)
       }
-    }).slice(0,100)
+  }).slice(0,100)
   }
 
   render () {

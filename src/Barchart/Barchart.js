@@ -43,8 +43,8 @@ export default class BarChart extends React.Component {
         .attr('height', height);
 
     const margin = {
-        top: 60,
-        bottom: 100,
+        top: 20,
+        bottom: 80,
         left: 80,
         right: 40
     };
@@ -116,9 +116,9 @@ export default class BarChart extends React.Component {
         .attr('x',  width/2)
         .attr('y', 60)
         .attr('fill', '#000')
-        .style('font-size', '20px')
+        .style('font-size', '18px')
         .style('text-anchor', 'middle')
-        .text('Fabricantes');
+        .text('Fabricante ID');
 
     chart.select('.y.axis')
         .append('text')
@@ -126,7 +126,7 @@ export default class BarChart extends React.Component {
         .attr('y', 0)
         .attr('transform', `translate(-50, ${height/2}) rotate(-90)`)
         .attr('fill', '#000')
-        .style('font-size', '20px')
+        .style('font-size', '18px')
         .style('text-anchor', 'middle')
         .text('Ventas');
 

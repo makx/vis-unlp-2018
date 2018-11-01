@@ -1,14 +1,22 @@
 import React, {Component} from 'react'
 import './App.css'
+
+/* D3 */
 import * as d3 from 'd3'
 import MapSpain from './Map/Map.js'
 import BarChart from './Barchart/Barchart.js'
 import Controls from './Controls/Controls.js'
 import HorizBarChart from './HorizBarChart/HorizBarChart.js'
-import { Button,Nav,NavItem,NavDropdown,MenuItem,Grid,Row } from 'react-bootstrap';
+import HorizonChart from './HorizonChart/HorizonChart.js'
 
+/* BOOTSTRAP */
+import { Grid,Row } from 'react-bootstrap';
+
+/* ICONS */
 import { FaChartBar } from 'react-icons/fa'
+
 class App extends Component {
+
   constructor (props) {
     super(props)
     this.state = {
@@ -24,13 +32,13 @@ class App extends Component {
     }
   }
 
-
   componentWillMount () {
     var purchases = []
-    d3.tsv('./pedidosCordenados.tsv', function (data) {
-    }, function (row) {
-      purchases.push(row)
-    }).then((rows) => {
+    d3.tsv(
+        './pedidosCordenados.tsv',
+        function (data) {},
+        function (row) { purchases.push(row)}
+    ).then((rows) => {
       let purchasesByManufacturer = this.getPurchasesByManufacturer(purchases).sort((a, b) => {
         return b.value.income - a.value.income
       })
@@ -131,6 +139,7 @@ class App extends Component {
     //   purchasesByProduct
     // })
   }
+
   clearOptionProduct () {//DEPRECATED
     // let data = JSON.parse(JSON.stringify(this.state.rawData))
     const data = this.filterData(this.state.currentManufacturer, null)
@@ -182,6 +191,7 @@ class App extends Component {
     const products = purchasesByProduct.map(item => item.key)
     const manufacturers = purchasesByManufacturer.map(item => item.key)
     console.log('el current manufacturer ', currentManufacturer)
+
     return <div className="App">
       <div className="App-instructions">
         <div className='header'>
@@ -204,12 +214,15 @@ class App extends Component {
         <Row className="show-grid">
         {data.length &&  <MapSpain data={data} />}
         {!currentManufacturer ?
-          <BarChart className='col-6'
+          <BarChart
           currentManufacturer={currentManufacturer}
           purchasesByManufacturer={purchasesByManufacturer}
           purchasesByProduct={purchasesByProduct}  />
-          : <HorizBarChart className='col-6' purchasesByProduct={purchasesByProduct} />
+          : <HorizBarChart purchasesByProduct={purchasesByProduct} />
         }
+        </Row>
+        <Row className="show-grid">
+            {/* <HorizonChart />*/}
         </Row>
         </Grid>}
       </div>
