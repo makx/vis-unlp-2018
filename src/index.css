@@ -27,7 +27,7 @@ h2{
   height: auto;
   text-align: left;
   padding: 15px;
-  background: url(/public/img/header.jpg);
+  background: url(/img/header.jpg);
   height: 100px;
   background-size: cover;
 }
