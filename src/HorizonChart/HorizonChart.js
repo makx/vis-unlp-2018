@@ -119,13 +119,13 @@ export default class HorizonChart extends React.Component {
             //.attr("fake", d => console.log(d.values));
 
         g.append("g")
-            .attr("clip-path", d => 'url(http://localhost:3000/#' + d.clip + ')')
+            .attr("clip-path", d => 'url('+window.location.origin+'/#' + d.clip + ')')
             .selectAll("use")
             .data(d => new Array(overlap).fill(d))
             .enter().append("use")
             .attr("fill", (d, i) => color(i))
             .attr("transform", (d, i) => `translate(0,${(i + 1) * step})`)
-            .attr("xlink:xlink:href", d => 'http://localhost:3000/#'+ d.path);
+            .attr("xlink:xlink:href", d => window.location.origin+'/#'+ d.path);
 
         g.append("text")
             .attr("x", 4)
