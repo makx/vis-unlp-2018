@@ -1,3 +1,44 @@
-# trabajo-final-visualizacion
+# Trabajo Final de "Visualización de Grandes Volúmenes de Datos"
 
 Describe trabajo-final-visualizacion here.
+
+## TODO
+* Agregar instrucciones de instalacion y compilacion!
+* Resolver las 8 preguntas del informe
+* borrar esta sección del README.md
+
+## Application
+
++ [See running application](https://makx.github.io/vis-unlp-2018/index.html)
+
+
+## Prerequisites
+ + NodeJS
+ + NWB ```sh npm install -g nwb  ```
+
+
+## Instructions
+
+ ```sh
+
+ $ git clone git@github.com:makx/vis-unlp-2018.git
+ $ cd vis-unlp-2018
+ $ nwb build-react-app
+ $ nwb build-react-app
+ $ nwb serve-react-app
+
+ ```
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+
+## Team
++ [Maximiliano Raffeto ](https://github.com/makx/)
++ [Diego Gennaro](https://github.com/crashncrow/)
++ [Gonzalo Goral](https://github.com/ggoral/)
