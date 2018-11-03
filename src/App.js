@@ -54,10 +54,6 @@ class App extends Component {
     })
   }
 
-  componentWillUpdate (nextProps, nextState) {
-    console.log('se dispara el will update')
-  }
-
   filterItemsByManufacturer (option) {
     let id_manufacturer = parseInt(option)
     const data = this.filterData(option, this.state.currentProduct)
@@ -190,7 +186,6 @@ class App extends Component {
 
     const products = purchasesByProduct.map(item => item.key)
     const manufacturers = purchasesByManufacturer.map(item => item.key)
-    console.log('el current manufacturer ', currentManufacturer)
 
     return <div className="App">
       <div className="App-instructions">

@@ -42,7 +42,6 @@ export default class HorizBarChart extends React.Component {
       .call(d3.axisLeft(y).tickSizeOuter(0))
 
     let format = d3.format(".3f")
-    console.log('la data importada', data)
     svg.append("g")
         .attr("fill", "steelblue")
       .selectAll("rect")

@@ -13,9 +13,11 @@ export default class HorizonChart extends React.Component {
 
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.data.length != this.props.data.length) {
+        console.log('receive props ', nextProps, this.props)
+        // if(nextProps.data.length != this.props.data.length) {
+            d3.select(".horizon-chart > *").remove()
             this.loadGraph(nextProps.data)
-        }
+        // }
     }
 
     componentWillMount () {

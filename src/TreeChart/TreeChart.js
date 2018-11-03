@@ -14,7 +14,6 @@ export default class TreeChart extends React.Component {
     d3.dsv(",", "data.csv", function(d) {
       return d;
     }).then((data) => {
-      console.log('la data del tree',data)
       let vData = d3.stratify()(data);
       this.plot(vData, g);
     });
@@ -28,7 +27,6 @@ export default class TreeChart extends React.Component {
 
       // Layout + Data
       var vRoot = d3.hierarchy(vData).sum(function (d) { return d.data.size; });
-      console.log(vRoot)
       var vNodes = vRoot.descendants();
       vLayout(vRoot);
       var vSlices = g.selectAll('rect').data(vNodes).enter().append('rect');
