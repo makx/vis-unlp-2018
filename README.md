@@ -11,14 +11,21 @@ Describe trabajo-final-visualizacion here.
 + [Application](https://makx.github.io/vis-unlp-2018/index.html)
 
 
+## Prerequisite
+ + NodeJS
+ + NWB ```sh npm install -g nwb  ```
+
+
 ## Instruction
 
  ```sh
- gem install jekyll bundler
+
  git clone git@github.com:makx/vis-unlp-2018.git
  cd vis-unlp-2018
- bundle install
- bundle exec jekyll build
+ nwb build-react-app
+ nwb build-react-app
+ nwb serve-react-app
+
  ```
 
 ## Contributing
