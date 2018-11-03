@@ -8,76 +8,78 @@ export default class HorizonChart extends React.Component {
 
     constructor() {
         super();
-        this.state = { data: null };
+        this.state = { data: [] };
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.data.length != this.props.data.length) {
+            this.loadGraph(nextProps.data)
+        }
     }
 
     componentWillMount () {
-        var purchases = [];
+        this.loadGraph(this.props.data)
+    }
 
-        d3.csv(
-            './time.csv',
-            function (data) {},
-            function (row) {
-                purchases.push({name: row.name, date: row.date * 1000, value: +row.total })
-            }
-        ).then((rows) => {
-            //var format = d3.timeFormat("%Y-%m-%dT%H:%M");
-            const dates = d3.nest()
-                .key(d => d.date)
-                .entries(purchases)
-                //.map(d => format(new Date(+d.key)))
-                .map(d => +d.key)
-                .sort(d3.ascending);
-
-            const values = d3.nest()
-                .key(d => d.name)
-                .key(d => d.date)
-                .rollup(v => v[0].value)
-                .map(purchases);
-
-            const sums = d3.nest()
-                .key(d => d.name)
-                .rollup(v => d3.sum(v, d => d.value))
-                .map(purchases);
-
-                //console.log(values.entries());
-            this.setState({
-                data: {
-                    series: values.entries()
-                        .sort((a, b) => sums.get(b.key) - sums.get(a.key))
-                        .map(({key, value}) => ({
-                            name: key,
-                            values: dates.map(d => value.get(+d))
-                        })),
-                    dates
-                  }
+    loadGraph(data) {
+        var purchases = data
+        purchases = purchases.map(item => { return {name: item.product_id, date: roundToHour(new Date(item.date_add)).getTime(), value: parseFloat(item.total_paid)}})
+        const dates = d3.nest()
+            .key(d => d.date)
+            .entries(purchases)
+            .map(d => {
+                return d.key
             })
+            .sort(d3.ascending)
+    
 
-            this.drawChart(this.state.data);
-        })
+        const values = d3.nest()
+            .key(d => d.name)
+            .key(d => d.date)
+            .rollup(v => v[0].value)
+            .map(purchases)
+
+        const sums = d3.nest()
+            .key(d => d.name)
+            .rollup(v => d3.sum(v, d => d.value))
+            .map(purchases)
+
+        this.setState({
+            data: {
+                series: values.entries()
+                    .sort((a, b) => sums.get(b.key) - sums.get(a.key))
+                    .map(({key, value}) => ({
+                        name: key,
+                        values: dates.map(d => {
+                            return value.get(+d)? value.get(+d) : 0
+                        })
+                    })),
+                dates
+                }
+        }, () => this.drawChart(this.state.data))
     }
 
     render () {
+        this.drawChart(this.state.data)
         return (
             <Col xs={12} sm={12} md={12}>
-            <h2>Ventas en el tiempo</h2>
-            <div className='horizon-chart'>
-            </div>
+                <h2>Ventas en el tiempo</h2>
+                <div className='horizon-chart'>
+                </div>
             </Col>
         )
     }
 
     drawChart(data){
-
-        console.log('ladata', data);
-
         const scheme = "schemeRdPu";
-        const overlap = 7;
+        const overlap = 5;
         const step = 23;
         const color = i => d3[scheme][Math.max(3, overlap)][i + Math.max(0, 3 - overlap)]
         const margin = ({top: 30, right: 10, bottom: 0, left: 10})
         const width = 964;
-        const height = data.series.length * (step + 1) + margin.top + margin.bottom
+        // const height = data.series.length * (step) + margin.top + margin.bottom
+        const height = 'auto'
 
         let x = d3.scaleUtc()
             .domain(d3.extent(data.dates))
@@ -145,3 +147,9 @@ export default class HorizonChart extends React.Component {
         return svg.node();
     }
 }
+
+function roundToHour(date) {
+    let p = 60 * 60 * 1000; // milliseconds in an hour
+    return new Date(Math.round(date.getTime() / p ) * p);
+  }
+  
