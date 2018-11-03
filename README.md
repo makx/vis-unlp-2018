@@ -20,11 +20,11 @@ Describe trabajo-final-visualizacion here.
 
  ```sh
 
- git clone git@github.com:makx/vis-unlp-2018.git
- cd vis-unlp-2018
- nwb build-react-app
- nwb build-react-app
- nwb serve-react-app
+ $ git clone git@github.com:makx/vis-unlp-2018.git
+ $ cd vis-unlp-2018
+ $ nwb build-react-app
+ $ nwb build-react-app
+ $ nwb serve-react-app
 
  ```
 
