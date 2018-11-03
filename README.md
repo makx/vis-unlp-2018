@@ -1,22 +1,23 @@
-# Trabajo Final de la materia "Visualización de Grandes Volúmenes de Datos"
+# Trabajo Final de "Visualización de Grandes Volúmenes de Datos"
 
 Describe trabajo-final-visualizacion here.
 
 ## TODO
 * Agregar instrucciones de instalacion y compilacion!
 * Resolver las 8 preguntas del informe
+* borrar esta sección del README.md
 
 ## Application
 
-+ [Application](https://makx.github.io/vis-unlp-2018/index.html)
++ [See running application](https://makx.github.io/vis-unlp-2018/index.html)
 
 
-## Prerequisite
+## Prerequisites
  + NodeJS
  + NWB ```sh npm install -g nwb  ```
 
 
-## Instruction
+## Instructions
 
  ```sh
 
