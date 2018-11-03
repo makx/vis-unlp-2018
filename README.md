@@ -4,9 +4,9 @@ Describe trabajo-final-visualizacion here.
 
 ## TODO
 * Agregar instrucciones de instalacion y compilacion!
-* Preguntas del informe
+* Resolver las 8 preguntas del informe
 
-##Application
+## Application
 
 + [Application](https://makx.github.io/vis-unlp-2018/index.html)
 
@@ -15,8 +15,8 @@ Describe trabajo-final-visualizacion here.
 
  ```sh
  gem install jekyll bundler
- git clone git@github.com:ggoral/ggoral.github.io.git
- cd ggoral.github.io
+ git clone git@github.com:makx/vis-unlp-2018.git
+ cd vis-unlp-2018
  bundle install
  bundle exec jekyll build
  ```
