@@ -14,15 +14,19 @@ El presente proyecto consiste en un Dashboard de ventas de un reatailer. Se utli
 ```
 
 Instalación de las dependencias
-
-```npm install```
-
+ ```sh
+ $ npm install
+ ```
 Para ejecutar la aplicación en un entorno local
-```npm start```
+ ```sh
+$ npm start
+```
 Se levantará la aplicación en http://localhost:3000
 
 Para buildear la aplicación en producción
-```npm run build```
+ ```sh
+$ npm run build 
+```
 Va a generar una carpeta 'dist' donde se va a encontrar la aplicación. 
 
 
